@@ -7,19 +7,29 @@
         <div class="uk-panel uk-panel-box">
             <h3 class="uk-panel-title"><i class="uk-icon-user"></i> LOG IN</h3>
 
-            <form class="uk-form uk-form-stacked">
+            @if(Session::has('message'))
+                <p class="uk-text-danger"><i class="uk-icon-exclamation-circle"></i> {{ Session::get('message') }}</p>
+            @endif
+
+            {{ Form::open(array('route' => 'login', 'class' => 'uk-form uk-form-stacked')) }}
                 <div class="uk-form-row">
-                    <label class="uk-form-label" for="email">Email</label>
-                    <div class="uk-form-controls"><input type="email" name="email" class="uk-form-width-large" /></div>
+                    {{ Form::label('email', 'Email', array('class' => 'uk-form-label')) }}
+                    <div class="uk-form-controls">
+                        {{ Form::email('email', '', array('class' => 'uk-form-width-large', 'placeholder' => 'siproma@email.com')) }}
+                        {{ $errors->first('email', '<small class="uk-text-danger">:message</small>') }}
+                    </div>
                 </div>
                 <div class="uk-form-row">
-                    <label class="uk-form-label" for="password">Password</label>
-                    <div class="uk-form-controls"><input type="password" name="password" class="uk-form-width-large" /></div>
+                    {{ Form::label('password', 'Password', array('class' => 'uk-form-label')) }}
+                    <div class="uk-form-controls">
+                        {{ Form::password('password', array('class' => 'uk-form-width-large')) }}
+                        {{ $errors->first('password', '<small class="uk-text-danger">:message</small>') }}
+                    </div>
                 </div>
                  <div class="uk-form-row">
-                    <button class="uk-button">Log in</button>
+                    {{ Form::button('Log in', array('class' => 'uk-button uk-button-primary', 'type' => 'submit')) }}
                  </div>
-            </form>
+            {{ Form::close() }}
 
         </div>
     </div>
