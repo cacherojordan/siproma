@@ -22,8 +22,10 @@
             <div class="uk-width-small-8-10">
                 <header>
                     <nav class="uk-navbar">
-                        <a href="#" class="uk-navbar-brand">Siproma</a>
-                        <div class="uk-navbar-content uk-navbar-flip"><button class="uk-button uk-button-success">Register</button></div>
+                        <a href="{{ route('login') }}" class="uk-navbar-brand">Siproma</a>
+                        @section('navbar-flip')
+                            <div class="uk-navbar-content uk-navbar-flip"><a href="{{ route('register.get') }}" class="uk-button uk-button-success">Register</a></div>
+                        @show
                     </nav>
                 </header>
 
